@@ -6,7 +6,7 @@
 //-----------------------------------------------------------------------
 
 import react from '@vitejs/plugin-react-swc';
-import { rayfinLocalDev } from '@microsoft/rayfin-local-dev/vite';
+import { rayfinLocalDev } from '@microsoft/rayfin-local-dev/experimental/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, type PluginOption } from 'vite';
 import license from 'rollup-plugin-license';

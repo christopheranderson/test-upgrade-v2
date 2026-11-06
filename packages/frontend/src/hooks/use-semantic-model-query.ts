@@ -80,8 +80,7 @@ async function executeSemanticModelQuery(
     throw new Error(
       `This app's Rayfin client has no "connectors". ` +
         `packages/frontend/src/lib/rayfin-client.ts ` +
-        `builds a plain RayfinClient; querying a semantic model needs ` +
-        `ConnectorsRayfinClient constructed with connectorConfigs and ` +
+        `must register connectorsService with connectorConfigs and ` +
         `connectorRuntimes from packages/frontend/src/lib/connectors.ts. ` +
         `See step 1 of the ` +
         `analytics skill.`

@@ -8,21 +8,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 const { clientConstructor, resolveRayfinConfig } = vi.hoisted(() => ({
-  clientConstructor: vi.fn(),
+  clientConstructor: vi.fn(() => ({ dispose: vi.fn() })),
   resolveRayfinConfig: vi.fn(),
 }));
 
 vi.mock('@microsoft/rayfin-client', () => ({
-  RayfinClient: class {
-    constructor(config: unknown) {
-      clientConstructor(config);
-    }
-  },
-  ConnectorsRayfinClient: class {
-    constructor(config: unknown) {
-      clientConstructor(config);
-    }
-  },
+  RayfinClient: { create: clientConstructor },
   resolveRayfinConfig,
 }));
 
@@ -88,7 +79,7 @@ describe('getRayfinClient', () => {
 
     await expect(getRayfinClient()).resolves.toBeDefined();
     expect(resolveRayfinConfig).toHaveBeenCalledWith(
-      expect.objectContaining({ apiUrl: '', publishableKey: '' })
+      expect.objectContaining({ apiUrl: undefined, publishableKey: '' })
     );
     expect(clientConstructor).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -109,5 +100,24 @@ describe('getRayfinClient', () => {
       'Missing required Rayfin configuration'
     );
     expect(clientConstructor).not.toHaveBeenCalled();
+  });
+
+  it('registers auth, data, functions, and connectors without legacy proxy flags', async () => {
+    resolveRayfinConfig.mockResolvedValue({
+      baseUrl: '',
+      publishableKey: 'pk-same-origin',
+    });
+    const { getRayfinClient } = await import('./rayfin-client');
+    await getRayfinClient();
+    expect(clientConstructor).toHaveBeenCalledWith({
+      baseUrl: '',
+      publishableKey: 'pk-same-origin',
+      auth: expect.any(Function),
+      services: {
+        data: expect.any(Function),
+        functions: expect.any(Function),
+        connectors: expect.any(Function),
+      },
+    });
   });
 });
