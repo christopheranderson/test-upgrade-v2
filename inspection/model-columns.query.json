@@ -1,0 +1,1 @@
+{"query":"EVALUATE SELECTCOLUMNS(FILTER(INFO.VIEW.COLUMNS(), [Table] = \"Coffee Shop Sales\"), \"Name\", [Name], \"Type\", [DataType])"}

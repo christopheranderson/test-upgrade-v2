@@ -1,0 +1,9 @@
+EVALUATE
+SUMMARIZECOLUMNS(
+    'Coffee Shop Sales'[store_location],
+    "Revenue", SUMX('Coffee Shop Sales', 'Coffee Shop Sales'[transaction_qty] * 'Coffee Shop Sales'[unit_price]),
+    "Transactions", COUNTROWS('Coffee Shop Sales'),
+    "Units", SUM('Coffee Shop Sales'[transaction_qty]),
+    "PeriodStart", MIN('Coffee Shop Sales'[transaction_date]),
+    "PeriodEnd", MAX('Coffee Shop Sales'[transaction_date])
+)

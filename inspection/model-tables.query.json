@@ -1,0 +1,1 @@
+{"query":"EVALUATE SELECTCOLUMNS(INFO.VIEW.TABLES(), \"Name\", [Name])"}

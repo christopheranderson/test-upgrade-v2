@@ -1,0 +1,12 @@
+import { Customer } from './Customer.js';
+import { Site } from './Site.js';
+import { Asset } from './Asset.js';
+import { Technician } from './Technician.js';
+import { WorkOrder } from './WorkOrder.js';
+import { Assignment } from './Assignment.js';
+import { Part } from './Part.js';
+import { PartUsage } from './PartUsage.js';
+import { WorkLog } from './WorkLog.js';
+export type { UniversalAppSchema } from '@rayfin-app/shared';
+export { Customer, Site, Asset, Technician, WorkOrder, Assignment, Part, PartUsage, WorkLog };
+export const schema = [Customer, Site, Asset, Technician, WorkOrder, Assignment, Part, PartUsage, WorkLog];
