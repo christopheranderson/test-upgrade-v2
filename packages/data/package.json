@@ -13,7 +13,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@microsoft/rayfin-core": "^1.36.0-alpha",
+    "@microsoft/rayfin-core": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-core-1.37.0-alpha.tgz",
     "@rayfin-app/shared": "*"
   },
   "devDependencies": {

@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@rayfin-app/shared": "*",
-    "@microsoft/fabric-user-data-functions": "^1.36.2",
+    "@microsoft/fabric-user-data-functions": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-fabric-user-data-functions-1.37.0-alpha.tgz",
     "mssql": "^12.7.14"
   },
   "devDependencies": {

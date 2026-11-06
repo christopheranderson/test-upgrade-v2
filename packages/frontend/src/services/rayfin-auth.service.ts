@@ -12,9 +12,7 @@ import {
   signInWithBrokeredToken,
   type FabricAuthOptions,
 } from '@microsoft/rayfin-auth-provider-fabric';
-import type RayfinClient from '@microsoft/rayfin-client';
-
-import { getRayfinClient, MissingRayfinConfigError } from '@/lib/rayfin-client';
+import { getRayfinClient, MissingRayfinConfigError, type AppClient } from '@/lib/rayfin-client';
 
 /** Why the app cannot authenticate, when it cannot. */
 export type AuthConfig =
@@ -154,10 +152,7 @@ class RayfinAuthService implements IAuthService {
   readonly canSignIn = true;
 
   constructor(
-    // Only the auth surface, so declaring an entity in the data schema does not
-    // make the client unassignable here -- a bare `RayfinClient` defaults to
-    // `Record<string, any>`, which a schema-typed client is not.
-    private readonly client: Pick<RayfinClient, 'auth'>,
+    private readonly client: Pick<AppClient, 'auth'>,
     private readonly fabricOptions: FabricAuthOptions
   ) {}
 

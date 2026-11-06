@@ -194,16 +194,13 @@ describe('useSemanticModelQuery', () => {
     expect(executeQuery).not.toHaveBeenCalled();
   });
 
-  it('says so when the app never wired ConnectorsRayfinClient', async () => {
-    // The base template builds a plain RayfinClient with no `connectors`, and no
-    // pack rewrites that file. Without this the first symptom is an unrelated
-    // TypeError deep in the hook.
+  it('names the missing connectors service registration', async () => {
     clientHasConnectors = false;
 
     const { result } = render();
 
     await waitFor(() => expect(result.current.error).toBeDefined());
-    expect(result.current.error?.message).toContain('ConnectorsRayfinClient');
+    expect(result.current.error?.message).toContain('connectorsService');
     expect(executeQuery).not.toHaveBeenCalled();
   });
 

@@ -6,9 +6,13 @@
 //-----------------------------------------------------------------------
 
 import {
-  ConnectorsRayfinClient,
+  RayfinClient,
   resolveRayfinConfig,
 } from '@microsoft/rayfin-client';
+import { browserSession } from '@microsoft/rayfin-auth';
+import { dataService } from '@microsoft/rayfin-data';
+import { functionsService } from '@microsoft/rayfin-functions';
+import { connectorsService } from '@microsoft/rayfin-connectors';
 import type { AppFunctionsSchema } from '@rayfin-app/functions/types';
 import type { UniversalAppSchema } from '@rayfin-app/shared';
 import {
@@ -17,11 +21,7 @@ import {
   type AppConnectorsSchema,
 } from './connectors';
 
-export type AppClient = ConnectorsRayfinClient<
-  UniversalAppSchema,
-  AppFunctionsSchema,
-  AppConnectorsSchema
->;
+export type AppClient = Awaited<ReturnType<typeof createClient>>;
 
 let _client: Promise<AppClient> | undefined;
 
@@ -44,34 +44,41 @@ export async function getRayfinClient(): Promise<AppClient> {
   return _client;
 }
 
-async function createClient(): Promise<AppClient> {
+async function createClient() {
   const resolved = await resolveRayfinConfig({
-    apiUrl: import.meta.env.VITE_RAYFIN_API_URL,
+    apiUrl: import.meta.env.VITE_RAYFIN_API_URL || undefined,
     publishableKey: import.meta.env.VITE_RAYFIN_PUBLISHABLE_KEY,
     workspaceId: import.meta.env.VITE_FABRIC_WORKSPACE_ID,
     itemId: import.meta.env.VITE_FABRIC_ITEM_ID,
     portalUrl: import.meta.env.VITE_FABRIC_PORTAL_URL,
   });
 
-  if (!resolved.baseUrl || !resolved.publishableKey) {
+  if (typeof resolved.baseUrl !== 'string' || !resolved.publishableKey?.trim()) {
     throw new MissingRayfinConfigError([
-      ...(!resolved.baseUrl ? ['apiUrl'] : []),
-      ...(!resolved.publishableKey ? ['publishableKey'] : []),
+      ...(typeof resolved.baseUrl !== 'string' ? ['apiUrl'] : []),
+      ...(!resolved.publishableKey?.trim() ? ['publishableKey'] : []),
     ]);
   }
 
-  return new ConnectorsRayfinClient<
-    UniversalAppSchema,
-    AppFunctionsSchema,
-    AppConnectorsSchema
-  >(
-    {
-      baseUrl: resolved.baseUrl,
-      publishableKey: resolved.publishableKey,
-      authStorage: true,
-      runtimeConfig: resolved.runtimeConfig,
-      connectors: connectorConfigs,
+  return RayfinClient.create({
+    baseUrl: resolved.baseUrl,
+    publishableKey: resolved.publishableKey,
+    runtimeConfig: resolved.runtimeConfig,
+    auth: browserSession({ storage: true }),
+    services: {
+      data: dataService<UniversalAppSchema>(),
+      functions: functionsService<AppFunctionsSchema>(),
+      connectors: connectorsService<AppConnectorsSchema>({
+        configs: connectorConfigs,
+        runtime: connectorRuntimes,
+      }),
     },
-    connectorRuntimes
-  );
+  });
+}
+
+if (import.meta.hot) {
+  import.meta.hot.dispose(async () => {
+    await _client?.then(client => client.dispose());
+    _client = undefined;
+  });
 }

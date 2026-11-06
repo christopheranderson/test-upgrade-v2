@@ -32,8 +32,8 @@
     "validate:functions": "npm run -w @rayfin-app/shared build && node scripts/validate-functions.mjs"
   },
   "devDependencies": {
-    "@microsoft/rayfin-cli": "^1.36.0-alpha",
-    "@microsoft/rayfin-guide": "^1.36.0-alpha",
+    "@microsoft/rayfin-cli": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-cli-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-guide": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-guide-1.37.0-alpha.tgz",
     "typescript": "~5.7.2"
   },
   "rayfinScriptBases": {
@@ -46,5 +46,23 @@
     "connectors",
     "data-modeling",
     "functions"
-  ]
+  ],
+  "overrides": {
+    "@microsoft/rayfin-cli": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-cli-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-guide": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-guide-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-core": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-core-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-auth": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-auth-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-auth-provider-fabric": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-auth-provider-fabric-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-client": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-client-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-connector-fabric-semanticmodel": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-connector-fabric-semanticmodel-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-connectors": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-connectors-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-data": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-data-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-lib": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-lib-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-local-dev": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-local-dev-1.37.0-alpha.tgz",
+    "@microsoft/fabric-user-data-functions": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-fabric-user-data-functions-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-functions": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-functions-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-tools-common": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-tools-common-1.37.0-alpha.tgz",
+    "@microsoft/rayfin-docs": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-rayfin-docs-1.37.0-alpha.tgz",
+    "@microsoft/fabric-embedded-host": "file:/Users/christopheranderson/.copilot/session-state/3bd0aa21-2422-4f09-87d4-06ec8c308078/files/v2-tarballs/microsoft-fabric-embedded-host-1.37.0-alpha.tgz"
+  }
 }
